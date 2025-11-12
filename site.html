@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Elite Hostings — Digital Agency</title>
+  <meta name="description" content="Elite Hostings: Web & App Development, Cloud, AI Automation, Branding, Data Analytics, and Growth Marketing." />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0b0e14;
+      --card:#131824;
+      --muted:#a9b0c4;
+      --text:#eaf0ff;
+      --primary:#6c8dff;
+      --primary-2:#9fb3ff;
+      --accent:#00d4a3;
+      --danger:#ff6b6b;
+      --grad:linear-gradient(135deg, #6c8dff 0%, #00d4a3 100%);
+      --shadow:0 10px 30px rgba(0,0,0,.35);
+      --radius:16px;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial,sans-serif}
+    a{color:var(--primary);text-decoration:none}
+    img{max-width:100%;display:block}
+    /* Layout */
+    header{
+      position:sticky; top:0; z-index:1000;
+      backdrop-filter:saturate(120%) blur(8px);
+      background:rgba(11,14,20,.6);
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+    .nav{
+      display:flex;align-items:center;justify-content:space-between;
+      max-width:1200px;margin:0 auto;padding:16px 24px;
+    }
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{
+      width:40px;height:40px;border-radius:10px;
+      background:var(--grad);box-shadow:var(--shadow);
+    }
+    .brand h1{margin:0;font-size:18px;font-weight:800;letter-spacing:.2px}
+    .navlinks{display:flex;gap:18px;align-items:center}
+    .navlinks a{font-weight:600;color:#dfe7ff}
+    .cta{
+      padding:10px 16px;border-radius:12px;
+      background:var(--grad);color:#081018;font-weight:700;
+      box-shadow:var(--shadow);
+    }
+    .hero{
+      position:relative;overflow:hidden;
+      max-width:1200px;margin:0 auto;padding:80px 24px 40px;
+    }
+    .hero:before{
+      content:""; position:absolute; inset:-40% -10% auto auto;
+      width:600px;height:600px;border-radius:50%;
+      background:radial-gradient(closest-side, rgba(111,141,255,.25), transparent 70%);
+      filter:blur(20px); transform:translate(10%, -20%);
+      pointer-events:none;
+    }
+    .hero-inner{display:grid;grid-template-columns:1.1fr .9fr;gap:28px}
+    .headline{font-size:42px;line-height:1.1;margin:0 0 16px;font-weight:800}
+    .sub{color:var(--muted);font-size:16px;margin:0 0 26px}
+    .pill{
+      display:inline-flex;align-items:center;gap:10px;padding:12px 14px;border-radius:50px;
+      background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);font-weight:600
+    }
+    .grid{
+      display:grid;grid-template-columns:repeat(3,1fr);gap:18px;max-width:1200px;margin:10px auto 40px;padding:0 24px;
+    }
+    .card{
+      background:var(--card);border:1px solid rgba(255,255,255,.08);border-radius:var(--radius);
+      padding:20px;box-shadow:var(--shadow);transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+    }
+    .card:hover{transform:translateY(-3px);border-color:rgba(159,179,255,.35)}
+    .card h3{margin:0 0 10px;font-size:18px}
+    .card p{margin:0;color:var(--muted);font-size:14px}
+    .section{max-width:1200px;margin:0 auto;padding:28px 24px}
+    .section h2{margin:0 0 16px;font-size:28px}
+    .list{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+    .badge{display:inline-block;padding:8px 12px;border-radius:14px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.06);font-weight:600;color:#cfe1ff}
+    .features{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .feature{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:16px}
+    .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+    .step{background:var(--card);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:16px}
+    .step .num{font-weight:800;color:var(--accent);margin-bottom:8px}
+    .reviews{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .review{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:16px}
+    .review .name{font-weight:700;margin-top:10px}
+    .cta-bar{
+      display:flex;gap:12px;flex-wrap:wrap;margin-top:10px
+    }
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:8px;
+      padding:12px 16px;border-radius:12px;border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.06);color:#eaf0ff;font-weight:700;cursor:pointer
+    }
+    .btn-primary{background:var(--grad);color:#081018;border:none}
+    .btn-ghost:hover{border-color:rgba(159,179,255,.35)}
+    form input, form select, form textarea{
+      width:100%;padding:12px 14px;border-radius:12px;border:1px solid rgba(255,255,255,.12);
+      background:#0f1420;color:var(--text);outline:none
+    }
+    form .row{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+    form .row3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+    form label{font-size:13px;color:#c9d3ee;font-weight:600;margin-bottom:6px;display:block}
+    form .hint{font-size:12px;color:var(--muted)}
+    .notice{
+      background:#0f1623;border:1px dashed rgba(159,179,255,.35);
+      border-radius:14px;padding:14px;color:#ccd7ff
+    }
+    footer{
+      border-top:1px solid rgba(255,255,255,.08);
+      background:#0a0d13;padding:28px 24px;color:#c3cbe4
+    }
+    .footgrid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:20px;max-width:1200px;margin:0 auto}
+    .mini{font-size:13px;color:#99a5c6}
+    .copyright{margin-top:16px;font-size:12px;color:#8c98ba}
+    /* Popup */
+    .modal-backdrop{
+      position:fixed; inset:0; background:rgba(6,9,14,.7);
+      backdrop-filter:blur(6px); display:none; z-index:1001; animation:fade .2s ease
+    }
+    .modal{
+      position:fixed; left:50%; top:50%; transform:translate(-50%,-50%);
+      width:96%; max-width:680px; background:var(--card); border:1px solid rgba(255,255,255,.12);
+      border-radius:16px; box-shadow:var(--shadow); display:none; z-index:1002; animation:pop .22s ease
+    }
+    .modal header{position:relative;background:transparent;border-bottom:1px solid rgba(255,255,255,.08)}
+    .modal .nav{padding:16px}
+    .modal .content{padding:18px}
+    .close-x{position:absolute;right:16px;top:12px;background:transparent;border:none;color:#cfe1ff;font-weight:800;font-size:20px;cursor:pointer}
+    @keyframes pop{from{transform:translate(-50%,-56%) scale(.98);opacity:0} to{transform:translate(-50%,-50%) scale(1);opacity:1}}
+    @keyframes fade{from{opacity:0} to{opacity:1}}
+    /* Chatbot */
+    .chatbot{
+      position:fixed; right:22px; bottom:22px; width:340px; max-width:calc(100% - 40px);
+      background:var(--card); border:1px solid rgba(255,255,255,.12); border-radius:16px; box-shadow:var(--shadow);
+      overflow:hidden; transform:translateY(20px); opacity:0; pointer-events:none; transition:all .2s ease; z-index:1003;
+    }
+    .chatbot.active{transform:translateY(0); opacity:1; pointer-events:auto}
+    .chat-header{
+      display:flex; align-items:center; justify-content:space-between; padding:12px 14px;
+      background:linear-gradient(135deg, rgba(108,141,255,.3), rgba(0,212,163,.3));
+      border-bottom:1px solid rgba(255,255,255,.10)
+    }
+    .chat-header .title{font-weight:800}
+    .chat-body{max-height:360px;overflow:auto;padding:12px;background:#0f1420}
+    .bubble{background:#162032;border:1px solid rgba(255,255,255,.10);color:#dfe7ff;padding:10px 12px;border-radius:12px;margin:8px 0;max-width:88%}
+    .bubble.me{background:#1b2538;color:#eaf0ff;margin-left:auto}
+    .chat-actions{display:flex;gap:8px;padding:12px;background:#0f1420;border-top:1px solid rgba(255,255,255,.10)}
+    .chat-actions input, .chat-actions select{flex:1}
+    .chat-toggle{
+      position:fixed; right:22px; bottom:22px; z-index:1004;
+      background:var(--grad); color:#081018; font-weight:800; border:none; border-radius:999px;
+      padding:14px 16px; box-shadow:var(--shadow); cursor:pointer
+    }
+    /* Responsive */
+    @media (max-width:980px){
+      .hero-inner{grid-template-columns:1fr}
+      .grid{grid-template-columns:repeat(2,1fr)}
+      .features{grid-template-columns:repeat(2,1fr)}
+      .steps{grid-template-columns:repeat(2,1fr)}
+      .reviews{grid-template-columns:repeat(2,1fr)}
+      .footgrid{grid-template-columns:1fr 1fr}
+    }
+    @media (max-width:640px){
+      .grid, .features, .steps, .reviews{grid-template-columns:1fr}
+      form .row, form .row3{grid-template-columns:1fr}
+      .headline{font-size:32px}
+      .navlinks{display:none}
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="nav">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <h1>Elite Hostings</h1>
+      </div>
+      <nav class="navlinks">
+        <a href="#services">Services</a>
+        <a href="#process">Process</a>
+        <a href="#work">Work</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#quote" class="cta">Get a quote</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div>
+        <span class="pill">AI‑ready, Conversion‑focused, Cloud‑secure</span>
+        <h2 class="headline">Design, build, and scale your digital presence with Elite Hostings.</h2>
+        <p class="sub">Web & mobile development, Shopify and WordPress, branding, data analytics, cloud management, and AI automation—under one roof.</p>
+        <div class="cta-bar">
+          <a href="#quote" class="btn btn-primary">Request a quotation</a>
+          <button class="btn btn-ghost" id="openLeadPopup">Claim free consultation</button>
+        </div>
+        <div class="mini" style="margin-top:10px">Payment plan: 50% after final quotation, 50% after completion.</div>
+      </div>
+      <div class="card">
+        <h3>Project brief</h3>
+        <p>Tell us about your goals. We’ll reply with a tailored plan and timelines.</p>
+        <form id="briefForm" action="https://formspree.io/f/mrbrgnvn" method="POST">
+          <div class="row" style="margin-top:12px">
+            <div>
+              <label>Full name</label>
+              <input name="name" required placeholder="Your name" />
+            </div>
+            <div>
+              <label>Email</label>
+              <input name="email" type="email" required placeholder="you@example.com" />
+            </div>
+          </div>
+          <div class="row" style="margin-top:12px">
+            <div>
+              <label>Company</label>
+              <input name="company" placeholder="Optional" />
+            </div>
+            <div>
+              <label>Preferred service</label>
+              <select name="service" required>
+                <option value="">Select…</option>
+                <option>Web Development</option>
+                <option>Web Design</option>
+                <option>WordPress Design</option>
+                <option>Shopify Development</option>
+                <option>Mobile App Development</option>
+                <option>Cloud Management</option>
+                <option>AI Automation & Integration</option>
+                <option>Branding & Logo Design</option>
+                <option>Data Analytics</option>
+                <option>Ads & Email Marketing</option>
+                <option>Other</option>
+              </select>
+            </div>
+          </div>
+          <div style="margin-top:12px">
+            <label>Project details</label>
+            <textarea name="message" rows="4" required placeholder="Share scope, goals, budget range, deadlines…"></textarea>
+          </div>
+          <input type="hidden" name="source" value="Hero Project Brief" />
+          <div class="cta-bar">
+            <button class="btn btn-primary" type="submit">Submit brief</button>
+          </div>
+          <div class="hint">By submitting, you agree to the payment plan: 50% after final quotation, 50% after completion.</div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section id="services" class="section">
+    <h2>Services we offer</h2>
+    <div class="grid">
+      <div class="card"><h3>Web Development</h3><p>High‑performance websites and APIs using modern stacks, built for speed, security, and scalability.</p></div>
+      <div class="card"><h3>Web Design</h3><p>UX/UI that converts—clean aesthetics, accessibility, and systems that support growth.</p></div>
+      <div class="card"><h3>WordPress Design</h3><p>Custom themes, block‑based editors, and SEO‑friendly builds tailored to your brand.</p></div>
+      <div class="card"><h3>Shopify Development</h3><p>Store setups, custom themes, app integrations, and performance optimization for sales.</p></div>
+      <div class="card"><h3>Mobile App Development</h3><p>Native and cross‑platform apps with delightful UX and robust architecture.</p></div>
+      <div class="card"><h3>Cloud Management</h3><p>DevOps, CI/CD, observability, and cost‑efficient cloud infrastructure management.</p></div>
+      <div class="card"><h3>AI Automation & Integration</h3><p>Workflows, assistants, and data pipelines integrated into your operations.</p></div>
+      <div class="card"><h3>Branding & Logo Design</h3><p>Identity systems that resonate—logos, guidelines, and visual language.</p></div>
+      <div class="card"><h3>Data Analytics</h3><p>Dashboards, pipelines, and insights that drive decisive action.</p></div>
+      <div class="card"><h3>Ads & Email Marketing</h3><p>Full‑funnel acquisition and lifecycle campaigns optimized for ROI.</p></div>
+      <div class="card"><h3>Other Services</h3><p>Tell us what you need—custom solutions available on quote.</p></div>
+    </div>
+    <div class="notice">All services are priced On Quote. Share your requirements to receive a tailored proposal.</div>
+  </section>
+
+  <!-- Process -->
+  <section id="process" class="section">
+    <h2>How we work</h2>
+    <div class="steps">
+      <div class="step"><div class="num">01 — Discovery</div><div>Brief, goals, and constraints. We align on scope and success metrics.</div></div>
+      <div class="step"><div class="num">02 — Strategy</div><div>Architecture, UX, and technical plan with timelines and milestones.</div></div>
+      <div class="step"><div class="num">03 — Build</div><div>Iterative development, reviews, and quality assurance.</div></div>
+      <div class="step"><div class="num">04 — Launch & Scale</div><div>Deployment, training, analytics, and ongoing improvements.</div></div>
+    </div>
+  </section>
+
+  <!-- Work -->
+  <section id="work" class="section">
+    <h2>Selected work</h2>
+    <div class="features">
+      <div class="feature">
+        <div class="badge">E‑commerce</div>
+        <h3>Conversion‑first Shopify revamp</h3>
+        <p>Custom theme, upsell flows, and analytics. Result: higher AOV and faster pages.</p>
+      </div>
+      <div class="feature">
+        <div class="badge">SaaS</div>
+        <h3>AI‑assisted onboarding</h3>
+        <p>Guided setup, contextual help, and automation that cut time‑to‑value.</p>
+      </div>
+      <div class="feature">
+        <div class="badge">Enterprise</div>
+        <h3>Cloud cost visibility</h3>
+        <p>Dashboards, alerts, and policies that reduced monthly spend without sacrificing performance.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reviews -->
+  <section id="reviews" class="section">
+    <h2>Client reviews</h2>
+    <div class="reviews">
+      <div class="review">
+        <p>“Elite Hostings turned our outdated site into a revenue engine. Clear communication and on‑time delivery.”</p>
+        <div class="name">— Priya S., D2C Founder</div>
+      </div>
+      <div class="review">
+        <p>“Their cloud team cut our costs and improved reliability. We finally sleep at night.”</p>
+        <div class="name">— Arjun M., CTO</div>
+      </div>
+      <div class="review">
+        <p>“Our branding finally matches our product quality. The logo system is versatile and memorable.”</p>
+        <div class="name">— Neha R., Marketing Lead</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quotation form -->
+  <section id="quote" class="section">
+    <h2>Request a quotation</h2>
+    <p class="mini">Share your scope. We’ll send a proposal with timelines, a payment plan (50% after final quotation, 50% after completion), and next steps.</p>
+
+    <form id="quoteForm" action="https://formspree.io/f/mrbrgnvn" method="POST" style="margin-top:12px">
+      <div class="row3">
+        <div>
+          <label>Full name</label>
+          <input name="name" required placeholder="Your name" />
+        </div>
+        <div>
+          <label>Email</label>
+          <input name="email" type="email" required placeholder="you@example.com" />
+        </div>
+        <div>
+          <label>Phone</label>
+          <input name="phone" type="tel" placeholder="+91 ..." />
+        </div>
+      </div>
+      <div class="row" style="margin-top:12px">
+        <div>
+          <label>Company</label>
+          <input name="company" placeholder="Optional" />
+        </div>
+        <div>
+          <label>Website or app URL</label>
+          <input name="url" placeholder="Optional" />
+        </div>
+      </div>
+      <div class="row" style="margin-top:12px">
+        <div>
+          <label>Preferred service</label>
+          <select name="service" required>
+            <option value="">Select…</option>
+            <option>Web Development</option>
+            <option>Web Design</option>
+            <option>WordPress Design</option>
+            <option>Shopify Development</option>
+            <option>Mobile App Development</option>
+            <option>Cloud Management</option>
+            <option>AI Automation & Integration</option>
+            <option>Branding & Logo Design</option>
+            <option>Data Analytics</option>
+            <option>Ads & Email Marketing</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div>
+          <label>Budget range</label>
+          <select name="budget">
+            <option value="">Select…</option>
+            <option>₹50k – ₹1L</option>
+            <option>₹1L – ₹3L</option>
+            <option>₹3L – ₹10L</option>
+            <option>₹10L+</option>
+            <option>Undisclosed</option>
+          </select>
+        </div>
+      </div>
+      <div style="margin-top:12px">
+        <label>Project details</label>
+        <textarea name="message" rows="5" required placeholder="Deliverables, platforms, integrations, deadlines, success metrics…"></textarea>
+      </div>
+      <input type="hidden" name="source" value="Main Quotation Form" />
+      <div class="cta-bar">
+        <button type="submit" class="btn btn-primary">Send request</button>
+        <button type="button" class="btn" id="openLeadPopup2">Quick callback</button>
+      </div>
+    </form>
+  </section>
+
+  <!-- Payment plan & FAQs -->
+  <section class="section">
+    <h2>Payment plan and FAQs</h2>
+    <div class="features">
+      <div class="feature">
+        <h3>Payment plan</h3>
+        <p><strong>50% after final quotation</strong> (locks scope, resources, and schedule). <strong>50% after completion</strong> (upon delivery and acceptance).</p>
+      </div>
+      <div class="feature">
+        <h3>What’s included</h3>
+        <p>Project management, QA, documentation, and knowledge transfer. Hosting and third‑party fees are billed separately when applicable.</p>
+      </div>
+      <div class="feature">
+        <h3>Support</h3>
+        <p>Post‑launch support window available on quote. SLA and retainers offered for ongoing work.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footgrid">
+      <div>
+        <div class="brand" style="margin-bottom:10px">
+          <div class="logo" aria-hidden="true"></div>
+          <h1>Elite Hostings</h1>
+        </div>
+        <div class="mini">Anand, Gujarat • Serving clients globally</div>
+        <div class="mini" style="margin-top:6px">Email: hello@elitehostings.example • Phone: +91-00000-00000</div>
+      </div>
+      <div>
+        <div class="mini" style="font-weight:700;margin-bottom:8px">Navigation</div>
+        <div class="mini"><a href="#services">Services</a></div>
+        <div class="mini"><a href="#process">Process</a></div>
+        <div class="mini"><a href="#work">Work</a></div>
+        <div class="mini"><a href="#reviews">Reviews</a></div>
+        <div class="mini"><a href="#quote">Get a quote</a></div>
+      </div>
+      <div>
+        <div class="mini" style="font-weight:700;margin-bottom:8px">Legal</div>
+        <div class="mini">All proposals are on quote. Taxes and third‑party fees extra.</div>
+        <div class="mini">© <span id="year"></span> Elite Hostings. All rights reserved.</div>
+      </div>
+    </div>
+    <div class="copyright">Built with care. Optimized for performance, accessibility, and conversions.</div>
+  </footer>
+
+  <!-- Lead capture popup -->
+  <div class="modal-backdrop" id="backdrop"></div>
+  <div class="modal" id="leadModal" aria-modal="true" role="dialog" aria-labelledby="leadTitle">
+    <header>
+      <div class="nav">
+        <div class="brand"><div class="logo"></div><h1 id="leadTitle">Free consultation</h1></div>
+        <button class="close-x" id="closeModal">&times;</button>
+      </div>
+    </header>
+    <div class="content">
+      <p class="mini">Share a few details. We’ll reach out with next steps and available slots.</p>
+      <form id="popupForm" action="https://formspree.io/f/mrbrgnvn" method="POST">
+        <div class="row">
+          <div>
+            <label>Full name</label>
+            <input name="name" required placeholder="Your name" />
+          </div>
+          <div>
+            <label>Email</label>
+            <input name="email" type="email" required placeholder="you@example.com" />
+          </div>
+        </div>
+        <div class="row" style="margin-top:12px">
+          <div>
+            <label>Service of interest</label>
+            <select name="service" required>
+              <option value="">Select…</option>
+              <option>Web Development</option>
+              <option>Web Design</option>
+              <option>WordPress Design</option>
+              <option>Shopify Development</option>
+              <option>Mobile App Development</option>
+              <option>Cloud Management</option>
+              <option>AI Automation & Integration</option>
+              <option>Branding & Logo Design</option>
+              <option>Data Analytics</option>
+              <option>Ads & Email Marketing</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div>
+            <label>Preferred contact</label>
+            <select name="contact">
+              <option>Email</option>
+              <option>Phone</option>
+              <option>WhatsApp</option>
+            </select>
+          </div>
+        </div>
+        <div style="margin-top:12px">
+          <label>Notes</label>
+          <textarea name="message" rows="3" placeholder="Anything else?"></textarea>
+        </div>
+        <input type="hidden" name="source" value="Lead Popup" />
+        <div class="cta-bar">
+          <button class="btn btn-primary" type="submit">Request callback</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Chatbot -->
+  <button class="chat-toggle" id="chatToggle">Chat with us</button>
+  <div class="chatbot" id="chatbot" aria-live="polite">
+    <div class="chat-header">
+      <div class="title">Elite Assistant</div>
+      <button class="btn" id="chatClose" style="padding:6px 10px">Close</button>
+    </div>
+    <div class="chat-body" id="chatBody">
+      <div class="bubble">Hi! I can help with quotes and services. What’s your name?</div>
+    </div>
+    <div class="chat-actions">
+      <input id="chatInput" placeholder="Type your message…" />
+      <select id="chatService">
+        <option value="">Service…</option>
+        <option>Web Development</option>
+        <option>Web Design</option>
+        <option>WordPress Design</option>
+        <option>Shopify Development</option>
+        <option>Mobile App Development</option>
+        <option>Cloud Management</option>
+        <option>AI Automation & Integration</option>
+        <option>Branding & Logo Design</option>
+        <option>Data Analytics</option>
+        <option>Ads & Email Marketing</option>
+        <option>Other</option>
+      </select>
+      <button class="btn btn-primary" id="chatSend">Send</button>
+    </div>
+  </div>
+
+  <script>
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Popup controls
+    const leadModal = document.getElementById('leadModal');
+    const backdrop = document.getElementById('backdrop');
+    const openLeadPopup = document.getElementById('openLeadPopup');
+    const openLeadPopup2 = document.getElementById('openLeadPopup2');
+    const closeModal = document.getElementById('closeModal');
+    function openModal(){
+      leadModal.style.display = 'block';
+      backdrop.style.display = 'block';
+    }
+    function closeLead(){
+      leadModal.style.display = 'none';
+      backdrop.style.display = 'none';
+    }
+    openLeadPopup.addEventListener('click', openModal);
+    if(openLeadPopup2) openLeadPopup2.addEventListener('click', openModal);
+    closeModal.addEventListener('click', closeLead);
+    backdrop.addEventListener('click', closeLead);
+
+    // Smooth scroll for internal links
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', e=>{
+        const id = a.getAttribute('href').slice(1);
+        const target = document.getElementById(id) || document.querySelector(a.getAttribute('href'));
+        if(target){
+          e.preventDefault();
+          target.scrollIntoView({behavior:'smooth', block:'start'});
+        }
+      })
+    });
+
+    // Form enhancements: success hints
+    function attachFormHandler(formId){
+      const form = document.getElementById(formId);
+      if(!form) return;
+      form.addEventListener('submit', async (e)=>{
+        // Optional: Let the native submission occur. If JS fails, Formspree still works.
+        // But we’ll intercept to show inline status and send via fetch.
+        e.preventDefault();
+        const submitBtn = form.querySelector('button[type="submit"]');
+        const data = new FormData(form);
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Sending…';
+        try{
+          const res = await fetch(form.action, { method:'POST', body:data, headers: { 'Accept':'application/json' } });
+          if(res.ok){
+            submitBtn.textContent = 'Sent ✓';
+            form.reset();
+          } else {
+            submitBtn.textContent = 'Try again';
+            alert('Submission failed. Please try again.');
+          }
+        }catch(err){
+          submitBtn.textContent = 'Try again';
+          alert('Network error. Please try again.');
+        }finally{
+          submitBtn.disabled = false;
+        }
+      });
+    }
+    attachFormHandler('briefForm');
+    attachFormHandler('quoteForm');
+    attachFormHandler('popupForm');
+
+    // Chatbot
+    const chatToggle = document.getElementById('chatToggle');
+    const chatbot = document.getElementById('chatbot');
+    const chatClose = document.getElementById('chatClose');
+    const chatBody = document.getElementById('chatBody');
+    const chatInput = document.getElementById('chatInput');
+    const chatService = document.getElementById('chatService');
+    const chatSend = document.getElementById('chatSend');
+
+    chatToggle.addEventListener('click', ()=> chatbot.classList.add('active'));
+    chatClose.addEventListener('click', ()=> chatbot.classList.remove('active'));
+
+    let lead = { name:'', email:'', phone:'', service:'', message:'' };
+    let stage = 0;
+
+    function pushBubble(text, me=false){
+      const el = document.createElement('div');
+      el.className = 'bubble' + (me ? ' me' : '');
+      el.textContent = text;
+      chatBody.appendChild(el);
+      chatBody.scrollTop = chatBody.scrollHeight;
+    }
+    function nextPrompt(){
+      if(stage===0) pushBubble('Great to meet you. What’s your email?');
+      else if(stage===1) pushBubble('Do you have a phone number for quick updates?');
+      else if(stage===2) pushBubble('Which service are you interested in? You can pick from the dropdown.');
+      else if(stage===3) pushBubble('Share a short description of your project or needs.');
+      else if(stage===4){
+        pushBubble('Perfect. I’ll submit your details and our team will reach out.');
+        submitChatLead();
+      }
+    }
+
+    function submitChatLead(){
+      const data = new FormData();
+      data.append('name', lead.name || '');
+      data.append('email', lead.email || '');
+      data.append('phone', lead.phone || '');
+      data.append('service', lead.service || '');
+      data.append('message', lead.message || '');
+      data.append('source', 'Chatbot');
+      fetch('https://formspree.io/f/mrbrgnvn', {
+        method:'POST',
+        body:data,
+        headers:{'Accept':'application/json'}
+      }).then(r=>{
+        if(r.ok){
+          pushBubble('Submitted ✓ You’ll hear from us soon.');
+        }else{
+          pushBubble('Hmm, something went wrong. Please use the Get a Quote form.');
+        }
+      }).catch(()=> pushBubble('Network error. Please try the form.'));
+      stage = 5;
+    }
+
+    chatSend.addEventListener('click', ()=>{
+      const text = chatInput.value.trim();
+      if(!text && !chatService.value) return;
+      if(text){ pushBubble(text, true); }
+      // Collect staged info
+      if(stage===0 && text){ lead.name = text; stage=1; nextPrompt(); return; }
+      if(stage===1 && text){ lead.email = text; stage=2; nextPrompt(); return; }
+      if(stage===2){
+        if(chatService.value){
+          lead.service = chatService.value; stage=3; nextPrompt(); return;
+        }else if(text){
+          lead.service = text; stage=3; nextPrompt(); return;
+        } else { pushBubble('Please select a service or type it.'); return; }
+      }
+      if(stage===3 && text){ lead.message = text; stage=4; nextPrompt(); return; }
+      if(stage>=4 && text){ pushBubble('Thanks! We’ve already collected your details.'); }
+      chatInput.value = '';
+      chatService.value = '';
+    });
+
+    // Keyboard send
+    chatInput.addEventListener('keydown', (e)=>{
+      if(e.key==='Enter'){ e.preventDefault(); chatSend.click(); }
+    });
+  </script>
+</body>
+</html>
